@@ -10,7 +10,7 @@ ENV \
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     build-essential=12.9 \
-    curl=7.74.0-1.3+deb11u7 \
+    curl=7.74.0-1.3+deb11u10 \
     gcc=4:10.2.1-1 \
     && rm -rf /var/lib/apt/lists/*
 
