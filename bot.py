@@ -47,12 +47,12 @@ outputs:
 - html
 - calendar
 discord_event:
-  id: {event.id}
-  link: {event.url}
-  interested: {event.user_count}
-  organizer: {event.creator}
-  location: {event.location}
-featureImage: {event.cover_image}
+  id: {json.dumps(event.id)}
+  link: {json.dumps(event.url)}
+  interested: {json.dumps(event.user_count)}
+  organizer: {json.dumps(event.creator)}
+  location: {json.dumps(event.location)}
+featureImage: {json.dumps(event.cover_image)}
 eventInfo:
   dates:
     extra:
