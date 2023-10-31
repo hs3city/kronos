@@ -1,10 +1,11 @@
 import json
 import logging
 import os
-from sanitize import sanitize
 
 import discord
 from pytz import timezone
+
+from sanitize import sanitize
 
 discord_token = os.getenv("DISCORD_TOKEN")
 

@@ -1,9 +1,10 @@
 import re
 
 safe = "abcdefghijklmnopqrstuvwxyz01234567890-_ .,"
-tomap = ("éàèùçâêîôûëïüąćęłńóśźżříšžčýůňúěďáéäüößœ",
-         (*"eaeucaeioueiuacelnoszzriszcyunuedae",
-          "ae", "ue", "oe", "ss", "oe"))
+tomap = (
+    "éàèùçâêîôûëïüąćęłńóśźżříšžčýůňúěďáéäüößœ",
+    (*"eaeucaeioueiuacelnoszzriszcyunuedae", "ae", "ue", "oe", "ss", "oe"),
+)
 map = {
     **{c: c for c in safe + safe.upper()},
     **{s: d for (s, d) in zip(*tomap)},
@@ -16,6 +17,7 @@ def sanitize(s):
 
 
 if __name__ == "__main__":
+
     def test(s):
         print(f"{s} --> {sanitize(s)}")
         print(f"{s.upper()} --> {sanitize(s.upper())}")
