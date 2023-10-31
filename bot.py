@@ -5,6 +5,8 @@ import os
 import discord
 from pytz import timezone
 
+from sanitize import sanitize
+
 discord_token = os.getenv("DISCORD_TOKEN")
 
 # Logging configuration
@@ -39,7 +41,7 @@ async def on_ready():
             directory = start_time.strftime("%Y/%m/%d")
             start_time = start_time.strftime("%H:%M")
             end_time = end_time.strftime("%H:%M")
-            filename = f"{date}-{event.name.replace('/', '').replace(':', '')}.md"
+            filename = f"{date}-{sanitize(event.name)}.md"
             fields = f"""---
 title: {json.dumps(event.name)}
 tags: ["hs3"]
