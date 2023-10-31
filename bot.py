@@ -42,6 +42,10 @@ async def on_ready():
             start_time = start_time.strftime("%H:%M")
             end_time = end_time.strftime("%H:%M")
             filename = f"{date}-{sanitize(event.name)}.md"
+            if event.cover_image is not None:
+                feature_image = f"featureImage: {event.cover_image.url}"
+            else:
+                feature_image = ""
             fields = f"""---
 title: {json.dumps(event.name)}
 tags: ["hs3"]
@@ -52,9 +56,9 @@ discord_event:
   id: {json.dumps(event.id)}
   link: {json.dumps(event.url)}
   interested: {json.dumps(event.user_count)}
-  organizer: {json.dumps(event.creator)}
+  organizer: {json.dumps(event.creator.name)}
   location: {json.dumps(event.location)}
-featureImage: {json.dumps(event.cover_image)}
+{feature_image}
 eventInfo:
   dates:
     extra:
