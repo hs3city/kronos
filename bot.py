@@ -38,7 +38,7 @@ async def on_ready():
             logging.info(event.description)
             logging.info(start_time)
             date = start_time.strftime("%Y-%m-%d")
-            directory = "events/start_time.strftime("%Y/%m/%d")"
+            directory = f"events/{start_time.strftime("%Y/%m/%d")}"
             start_time = start_time.strftime("%H:%M")
             end_time = end_time.strftime("%H:%M")
             filename = f"{date}-{sanitize(event.name)}.md"
