@@ -19,7 +19,7 @@ USER appuser
 
 WORKDIR /home/appuser/bot
 
-ENV PYTHONPATH=/home/appuser
+ENV PYTHONPATH=/home/appuser/bot
 
 COPY requirements.txt .
 
