@@ -68,11 +68,14 @@ eventInfo:
 """
             print(fields)
             try:
-                os.makedirs(directory)
+                os.makedirs(directory, mode=0o777, exist_ok=True)
             except FileExistsError:
-                pass
-            with open(f"{directory}/{filename}", "w") as f:
-                f.write(fields)
+                logging.exception("We can't create a tree. Why, oh why?")
+            try:
+                with open(f"{directory}/{filename}", "w") as f:
+                    f.write(fields)
+            except PermissionError:
+                logging.exception("Oops, we can't write here!")
         logging.info(
             f"Guilds processed: {guilds_processed}, guilds total: {guilds_total}"
         )
