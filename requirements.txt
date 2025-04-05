@@ -407,3 +407,11 @@ yarl==1.9.2 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:f3b078dbe227f79be488ffcfc7a9edb3409d018e0952cf13f15fd6512847f3f7 \
     --hash=sha256:f4e2d08f07a3d7d3e12549052eb5ad3eab1c349c53ac51c209a0e5991bbada78 \
     --hash=sha256:f7a3d8146575e08c29ed1cd287068e6d02f1c7bdff8970db96683b9591b86ee7
+
+
+# new:
+#  don't know how to add this to the requirements.txt. I'm looking for a way to add this to the requirements.txt but this I can see above is horrible. => Kinter
+
+# discord.py>=2.0.0
+# pytz
+# gql[aiohttp]>=3.0.0
