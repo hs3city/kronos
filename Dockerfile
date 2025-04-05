@@ -26,4 +26,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY *.py .
+
+RUN mkdir -p events
+
+
 CMD ["python", "bot.py", "--log=WARNING"]
