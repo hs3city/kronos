@@ -40,7 +40,9 @@ Python 3.9 or greater is needed. If you'd like to learn more, I recommend [disco
 
    ```
    DISCORD_TOKEN=<your_discord_token>
+   HS3_REPO=<path to the root folder of your local hs3.pl website repo*>
    ```
+   *or any other directory where you want the event files to be generated
 
 1. Run the app
 
@@ -48,6 +50,6 @@ Python 3.9 or greater is needed. If you'd like to learn more, I recommend [disco
    python bot.py
    ```
 
-1. If script succeeded, the subpages were generated in the `hs3.pl` repository in your current directory.
+1. If script succeeded, the subpages were generated in the `hs3.pl` repository in your current directory. 
 
 1. If you want to make a commit with up to date events, follow the contributing guildelines in the [hs3.pl repo](https://github.com/hs3city/hs3.pl).

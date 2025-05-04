@@ -10,13 +10,15 @@ from dotenv import load_dotenv
 from sanitize import sanitize, remove_emoji
 
 # Relative path to Hugo website events directory
-relative_event_dir = "../../content/pl/wydarzenia"
+relative_event_dir = "content/pl/wydarzenia"
 
 cwd = Path.cwd()
 
 load_dotenv(verbose=True)
 discord_token = os.getenv("DISCORD_TOKEN")
-event_dir = (cwd / relative_event_dir).resolve()
+website_repo = os.getenv("HS3_REPO")
+website_path = Path(website_repo)
+event_dir = (website_path / relative_event_dir).resolve()
 
 # Logging configuration
 logging.basicConfig(level=logging.INFO)
@@ -91,6 +93,7 @@ eventInfo:
         )
         if guilds_processed == guilds_total:
             await client.close()
+    logging.info(f"Events were saved in: {event_dir}")
 
 
 client.run(discord_token)
