@@ -3,11 +3,22 @@ import logging
 import os
 
 import discord
+from pathlib import Path
 from pytz import timezone
+from dotenv import load_dotenv
 
-from sanitize import sanitize
+from sanitize import sanitize, remove_emoji
 
+# Relative path to Hugo website events directory
+relative_event_dir = "content/pl/wydarzenia"
+
+cwd = Path.cwd()
+
+load_dotenv(verbose=True)
 discord_token = os.getenv("DISCORD_TOKEN")
+website_repo = os.getenv("HS3_REPO")
+website_path = Path(website_repo)
+event_dir = (website_path / relative_event_dir).resolve()
 
 # Logging configuration
 logging.basicConfig(level=logging.INFO)
@@ -38,7 +49,8 @@ async def on_ready():
             logging.info(event.description)
             logging.info(start_time)
             date = start_time.strftime("%Y-%m-%d")
-            directory = f'events/{start_time.strftime("%Y/%m/%d")}'
+            directory = event_dir.joinpath(start_time.strftime("%Y/%m/%d"))
+            print(directory)
             start_time = start_time.strftime("%H:%M")
             end_time = end_time.strftime("%H:%M")
             filename = f"{date}-{sanitize(event.name)}.md"
@@ -47,7 +59,7 @@ async def on_ready():
             else:
                 feature_image = ""
             fields = f"""---
-title: {json.dumps(event.name)}
+title: {json.dumps(remove_emoji(event.name))}
 tags: ["hs3"]
 outputs:
 - html
@@ -72,7 +84,7 @@ eventInfo:
             except FileExistsError:
                 logging.exception("We can't create a tree. Why, oh why?")
             try:
-                with open(f"{directory}/{filename}", "w") as f:
+                with open(directory.joinpath(filename), "w", encoding="utf-8") as f:
                     f.write(fields)
             except PermissionError:
                 logging.exception("Oops, we can't write here!")
@@ -81,6 +93,7 @@ eventInfo:
         )
         if guilds_processed == guilds_total:
             await client.close()
+    logging.info(f"Events were saved in: {event_dir}")
 
 
 client.run(discord_token)
